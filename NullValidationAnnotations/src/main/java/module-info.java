@@ -1,3 +1,3 @@
-module nl.cqit.validation.nullsafe {
+module nl.cqit.validation.nullsafe.annotations {
     exports nl.cqit.validation.nullsafe.annotations;
 }
