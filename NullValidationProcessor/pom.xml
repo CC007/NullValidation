@@ -17,7 +17,11 @@
             <groupId>com.google.auto.service</groupId>
             <artifactId>auto-service</artifactId>
             <version>1.0.1</version>
-            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>nl.cqit.validation</groupId>
+            <artifactId>null-safe-annotations</artifactId>
+            <version>${project.version}</version>
         </dependency>
         
     </dependencies>
@@ -32,6 +36,13 @@
                 <configuration>
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>com.google.auto.service</groupId>
+                            <artifactId>auto-service</artifactId>
+                            <version>1.0.1</version>
+                        </path>
+                    </annotationProcessorPaths>
                 </configuration>
             </plugin>
 
