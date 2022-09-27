@@ -17,11 +17,25 @@
             <artifactId>null-safe-annotations</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <dependency>
-            <groupId>nl.cqit.validation</groupId>
-            <artifactId>null-safe-processor</artifactId>
-            <version>${project.version}</version>
-        </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>nl.cqit.validation</groupId>
+                            <artifactId>null-safe-processor</artifactId>
+                            <version>${project.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
