@@ -2,8 +2,6 @@ package nl.cqit.validation.nullsafe.processor;
 
 
 import com.google.auto.service.AutoService;
-import com.sun.source.tree.StatementTree;
-import com.sun.source.tree.VariableTree;
 import com.sun.source.util.Trees;
 
 import javax.annotation.processing.AbstractProcessor;
@@ -34,7 +32,18 @@ public class NotNullAnnotationProcessor extends AbstractProcessor {
     @Override
     public synchronized void init(ProcessingEnvironment processingEnv) {
         super.init(processingEnv);
-        trees = Trees.instance(processingEnv);
+        trees = Trees.instance(jbUnwrap(ProcessingEnvironment.class, processingEnv));
+    }
+
+    private static <T> T jbUnwrap(Class<? extends T> iface, T wrapper) {
+        T unwrapped = null;
+        try {
+            final Class<?> apiWrappers = wrapper.getClass().getClassLoader().loadClass("org.jetbrains.jps.javac.APIWrappers");
+            final Method unwrapMethod = apiWrappers.getDeclaredMethod("unwrap", Class.class, Object.class);
+            unwrapped = iface.cast(unwrapMethod.invoke(null, iface, wrapper));
+        }
+        catch (Throwable ignored) {}
+        return unwrapped != null? unwrapped : wrapper;
     }
 
     @Override
