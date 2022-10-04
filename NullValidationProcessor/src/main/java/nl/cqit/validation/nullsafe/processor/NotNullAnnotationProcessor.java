@@ -4,6 +4,7 @@ package nl.cqit.validation.nullsafe.processor;
 import com.google.auto.service.AutoService;
 import com.sun.source.util.Trees;
 import nl.cqit.validation.nullsafe.annotations.NotNull;
+import nl.cqit.validation.nullsafe.processor.internal.NotNullChecker;
 
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.ProcessingEnvironment;
@@ -31,11 +32,13 @@ import java.util.stream.Collectors;
 public class NotNullAnnotationProcessor extends AbstractProcessor {
 
     private Trees trees;
+    private NotNullChecker notNullChecker;
 
     @Override
     public synchronized void init(ProcessingEnvironment processingEnv) {
         super.init(processingEnv);
         trees = Trees.instance(jbUnwrap(ProcessingEnvironment.class, processingEnv));
+        notNullChecker = new NotNullChecker(trees);
     }
 
     private static <T> T jbUnwrap(Class<? extends T> iface, T wrapper) {
@@ -75,7 +78,7 @@ public class NotNullAnnotationProcessor extends AbstractProcessor {
             processFieldNotNull(element);
         }
         for (ExecutableElement element : ElementFilter.methodsIn(annotatedElements)) {
-            processReturnTypeNotNull(element);
+            notNullChecker.checkReturnType(element);
         }
 
         for (Map.Entry<Element, Element> element : parentElements.entrySet()) {
@@ -96,15 +99,11 @@ public class NotNullAnnotationProcessor extends AbstractProcessor {
         // TODO implement
     }
 
-    private void processReturnTypeNotNull(ExecutableElement element) {
-        // TODO implement
-    }
-
     private void processMethodParameterNotNull(VariableElement element, ExecutableElement methodElement) {
         // TODO implement
     }
 
-    private void processLocalVariableNotNull(VariableElement element) {
+    private void processLocalVariableNotNull(VariableElement element, ExecutableElement methodElement) {
         // TODO implement
     }
 }
