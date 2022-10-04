@@ -49,7 +49,7 @@ public class NotNullChecker {
         
         final MethodTree method = trees.getTree(methodElem);
         final CompilationUnitTree compilationUnit = trees.getPath(methodElem).getCompilationUnit();
-        method.getParameters().get(0).getModifiers().getAnnotations().get(0).getAnnotationType();
+        //method.getParameters().get(0).getModifiers().getAnnotations().get(0).getAnnotationType();
         for (StatementTree statement : method.getBody().getStatements()) {
             final TreePath statementPath = trees.getPath(compilationUnit, statement);
             for (Tree tree : statementPath) {
