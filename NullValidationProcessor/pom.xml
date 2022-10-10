@@ -17,20 +17,27 @@
     
     <dependencies>
         <dependency>
+            <groupId>nl.cqit.validation</groupId>
+            <artifactId>null-safe-annotations</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.google.auto.service</groupId>
             <artifactId>auto-service-annotations</artifactId>
             <version>${auto-service.version}</version>
         </dependency>
         <dependency>
-            <groupId>nl.cqit.validation</groupId>
-            <artifactId>null-safe-annotations</artifactId>
-            <version>${project.version}</version>
+            <groupId>com.karuslabs</groupId>
+            <artifactId>satisfactory</artifactId>
         </dependency>
-        
         <dependency>
-            <groupId>com.google.testing.compile</groupId>
-            <artifactId>compile-testing</artifactId>
-            <version>0.19</version>
+            <groupId>com.karuslabs</groupId>
+            <artifactId>utilitary</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.karuslabs</groupId>
+            <artifactId>elementary</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
