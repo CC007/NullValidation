@@ -38,7 +38,7 @@ public class NotNullAnnotationProcessor extends AbstractProcessor {
     public synchronized void init(ProcessingEnvironment processingEnv) {
         super.init(processingEnv);
         trees = Trees.instance(jbUnwrap(ProcessingEnvironment.class, processingEnv));
-        notNullChecker = new NotNullChecker(trees);
+        notNullChecker = new NotNullChecker(trees, processingEnv.getElementUtils());
     }
 
     private static <T> T jbUnwrap(Class<? extends T> iface, T wrapper) {
