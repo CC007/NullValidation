@@ -2,7 +2,9 @@ package nl.cqit.validation.nullsafe.processor.internal;
 
 import com.karuslabs.elementary.Results;
 import com.karuslabs.elementary.junit.JavacExtension;
-import com.karuslabs.elementary.junit.annotations.Options;
+import com.karuslabs.elementary.junit.annotations.Module;
+import com.karuslabs.elementary.junit.annotations.ModulePath;
+import com.karuslabs.elementary.junit.annotations.ProcessorPath;
 import com.karuslabs.elementary.junit.annotations.Processors;
 import nl.cqit.validation.nullsafe.processor.NotNullAnnotationProcessor;
 import org.junit.jupiter.api.Test;
@@ -12,12 +14,9 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 @ExtendWith(JavacExtension.class)
-@Options(
-        "-d .\\unimportant\\because\\inmemory\\but\\mandatory" +
-        " --module-source-path .\\src\\test\\resources" +
-        " --module test" +
-        " --module-path ..\\NullValidationAnnotations\\target\\null-safe-annotations-1.0-SNAPSHOT.jar" +
-        " --processor-path ..\\NullValidationAnnotations\\target\\null-safe-annotations-1.0-SNAPSHOT.jar")
+@Module("test")
+@ModulePath("nl.cqit.validation:null-safe-annotations:1.0-SNAPSHOT")
+@ProcessorPath("nl.cqit.validation:null-safe-annotations:1.0-SNAPSHOT")
 @Processors(NotNullAnnotationProcessor.class)
 class NotNullCheckerTest {
 

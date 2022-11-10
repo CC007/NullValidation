@@ -19,6 +19,8 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        
+        <karuslabs.version>2.0.0-SNAPSHOT</karuslabs.version>
     </properties>
 
     <repositories>
@@ -54,12 +56,6 @@
             <version>2.0.0</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>com.google.truth</groupId>
-            <artifactId>truth</artifactId>
-            <version>1.1.3</version>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
     <dependencyManagement>
@@ -67,18 +63,18 @@
             <dependency>
                 <groupId>com.karuslabs</groupId>
                 <artifactId>satisfactory</artifactId>
-                <version>1.1.2</version>
+                <version>${karuslabs.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.karuslabs</groupId>
                 <artifactId>utilitary</artifactId>
-                <version>1.1.2</version>
+                <version>${karuslabs.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.karuslabs</groupId>
                 <artifactId>elementary</artifactId>
-                <version>1.2.0-SNAPSHOT</version>
+                <version>${karuslabs.version}</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>
@@ -95,12 +91,19 @@
                         <source>${maven.compiler.source}</source>
                         <target>${maven.compiler.target}</target>
                         <showWarnings>true</showWarnings>
+                        <enablePreview>true</enablePreview>
+                        <compilerArgs>
+                            --enable-preview
+                        </compilerArgs>
                     </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>3.0.0-M7</version>
+                    <configuration>
+                        <argLine>--enable-preview</argLine>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>

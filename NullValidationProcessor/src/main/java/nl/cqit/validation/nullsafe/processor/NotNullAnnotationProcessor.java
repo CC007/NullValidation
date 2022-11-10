@@ -47,8 +47,7 @@ public class NotNullAnnotationProcessor extends AbstractProcessor {
             final Class<?> apiWrappers = wrapper.getClass().getClassLoader().loadClass("org.jetbrains.jps.javac.APIWrappers");
             final Method unwrapMethod = apiWrappers.getDeclaredMethod("unwrap", Class.class, Object.class);
             unwrapped = iface.cast(unwrapMethod.invoke(null, iface, wrapper));
-        }
-        catch (Throwable ignored) {}
+        } catch (Throwable ignored) {}
         return unwrapped != null? unwrapped : wrapper;
     }
 
