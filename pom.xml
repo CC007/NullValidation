@@ -12,7 +12,6 @@
     <modules>
         <module>NullValidationAnnotations</module>
         <module>NullValidationProcessor</module>
-        <module>NullValidationExample</module>
     </modules>
 
     <properties>
